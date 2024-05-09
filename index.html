@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        html,
+        body,
+        p,
+        ul,
+        dl,
+        dt,
+        dd,
+        br,
+        hr,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        ol {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-font-smoothing: antialiased;
+            text-size-adjust: 100%;
+            counter-reset: section;
+            touch-action: manipulation;
+        }
+
+        body,
+        button,
+        input,
+        select,
+        textarea {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Microsoft Yahei";
+            outline: 0;
+        }
+
+        body,
+        html {
+            height: 100%;
+        }
+
+        body {
+            padding-bottom: constant(safe-area-inset-bottom);
+            padding-bottom: env(safe-area-inset-bottom);
+            background-color: #f7f8fa;
+        }
+
+        button {
+            font-size: inherit;
+        }
+
+        input,
+        textarea {
+            -webkit-user-select: auto !important;
+            -webkit-touch-callout: inherit !important;
+        }
+
+        :focus {
+            outline: none;
+        }
+
+        a,
+        a:hover,
+        a:visited,
+        a:focus,
+        a:link {
+            color: inherit;
+            text-decoration: none;
+            outline: none;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .app {
+            position: relative;
+            max-width: 640px;
+            min-width: 320px;
+            margin: 0 auto;
+            height: 100%;
+            background: #fefefe;
+        }
+
+        :root {
+            --green-color: #00cc83;
+            --dark-blue-color: #132668;
+            --orange-color: #ee7a45;
+            --theme1-color: var(--dark-blue-color);
+            --theme2-color: var(--green-color);
+            --theme3-color: var(--orange-color);
+
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .btn {
+            position: relative;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            border-radius: 6px;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            outline: none;
+            -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .btn svg {
+            position: absolute;
+            left: 20px;
+        }
+
+        .cover {
+            position: relative;
+            width: 100%;
+            height: 50%;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            overflow: hidden;
+            margin-bottom: 25%;
+        }
+
+        .cover::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--theme1);
+            opacity: .2;
+        }
+
+        .btn:active {
+            opacity: 0.6;
+        }
+
+        .style1 .btn {
+            margin: 30px;
+            box-shadow: 0 10px 12px -6px #9b9b9b;
+        }
+
+        .theme2 {
+            --theme-color: var(--theme2-color);
+        }
+
+        .theme2 .btn.ios {
+            background-color: var(--theme-color);
+            color: #fff;
+        }
+
+        .theme2.style1 .btn.android {
+            border: 1px solid var(--theme-color);
+            color: var(--theme-color);
+        }
+
+        .theme2 .cover {
+            background-color: var(--theme-color);
+        }
+
+        .theme2 .cover::after {
+            content: '';
+            background-color: var(--theme-color);
+        }
+
+        .style3 {
+            position: relative;
+            text-align: center;
+        }
+
+        .style3.theme1 {
+            --theme-color: #4287FF;
+        }
+
+        .style3 .logo {
+            position: absolute;
+            display: block;
+            left: 50%;
+            top: 50%;
+            width: 256px;
+            height: 256px;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .style3 .container {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+
+        .container>div {
+            margin-bottom: 20px;
+        }
+
+        .style3 .version {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+
+        .style3 .tips {
+            margin-top: 2px;
+            font-size: 14px;
+            color: #9E9E9E;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .style3 .btn {
+            box-sizing: border-box;
+            height: 48px;
+            line-height: 48px;
+            border-radius: 24px;
+            background: var(--theme-color);
+            text-align: center;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            vertical-align: -3px;
+            display: none;
+        }
+
+        .style3 .btn-group {
+            width: 76%;
+            margin: 0 auto;
+        }
+
+        .style3 .btn.android {
+            display: flex
+        }
+
+        .style3 .btn svg {
+            position: relative;
+            left: auto;
+            margin-right: 10px;
+        }
+
+        .style3 .copyright {
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 12px;
+            color: #8e8e8e;
+        }
+    </style>
+    <title>Clone Master</title>
+</head>
+
+<body>
+    <div class="app style3 theme2">
+        <div id="eLogo" class="logo"></div>
+        <div class="container">
+
+            <div class="version">
+                <div>Clone Master : Multi Space</div>
+                <div class="tips">1.2.2 Release</div>
+            </div>
+            <div class="btn-group">
+                <a id="eAndroid" href="" class="btn android flex">
+                    <svg t="1622038313232" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="1204" width="26" height="26">
+                        <path
+                            d="M287.01171846 737.01171846c0 20.62392627 16.87412109 37.49804737 37.49804736 37.49804736l37.49804736 0 0 131.24316446c0 31.12337901 25.12369161 56.2470706 56.2470706 56.2470706s56.2470706-25.12369161 56.24707062-56.2470706l0-131.24316445 74.99609385-1e-8 0 131.24316446c0 31.12337901 25.12369161 56.2470706 56.2470706 56.2470706s56.2470706-25.12369161 56.2470706-56.2470706l0-131.24316445 37.49804737-1e-8c20.62392627 0 37.49804737-16.87412109 37.49804736-37.49804736l0-374.98047012-449.97656397 0 0 374.98047012zM193.26660049 362.03124834c-31.12337901 0-56.2470706 25.12369161-56.24707061 56.24707061l0 262.48632891c0 31.12337901 25.12369161 56.2470706 56.24707061 56.2470706s56.2470706-25.12369161 56.2470706-56.2470706l0-262.48632891c0-31.12337901-25.12369161-56.2470706-56.2470706-56.24707061zM830.73339951 362.03124834c-31.12337901 0-56.2470706 25.12369161-56.2470706 56.24707061l0 262.48632891c0 31.12337901 25.12369161 56.2470706 56.2470706 56.2470706s56.2470706-25.12369161 56.24707061-56.2470706l0-262.48632891c0-31.12337901-25.12369161-56.2470706-56.24707061-56.24707061zM644.36810557 143.0426542l48.93495117-48.93495118c7.31211943-7.31211943 7.31211943-19.1240042 0-26.43612275s-19.1240042-7.31211943-26.43612276 0l-55.49710956 55.30961953c-29.99843789-14.81172891-63.55919004-23.4362795-99.36982442-23.43627949-35.99812529 0-69.74636748 8.62455058-99.93229541 23.62376953l-55.68459961-55.68459961c-7.31211943-7.31211943-19.1240042-7.31211943-26.43612275 0s-7.31211943 19.1240042 0 26.43612276l49.12244121 49.12244121c-55.68459961 41.06036162-92.05770498 107.05692393-92.05770498 181.49054765l449.97656396 0c0-74.62111377-36.56059541-140.61767607-92.62017597-181.49054765zM437.00390615 249.53710713l-37.49804737 0 0-37.49804736 37.49804737 0 0 37.49804736zM624.49414122 249.53710713l-37.49804737 0 0-37.49804736 37.49804737 0 0 37.49804736z"
+                            fill="#ffffff" p-id="1205"></path>
+                    </svg>
+                    <span>download</span></a>
+            </div>
+            <div class="copyright">Developer：CM Team </div>
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        var $ = function (ele) {
+            return document.querySelector(ele);
+        }
+        var config = {
+            android_download_name: "Download",
+            android_download_url: "./download/cmaster-1.2.2.apk",
+        }
+        window.onload = function () {
+            var android = $('#eAndroid');
+            var cover = $('#eLogo');
+            cover.style.backgroundImage = 'url(./imgs/ic_lanucher_round.jpg)';
+            android.href = config.android_download_url;
+            android.querySelector('span').innerText = config.android_download_name;
+        }
+    </script>
+</body>
+
+</html>
